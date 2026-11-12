@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report (private)
+    url: https://github.com/xd4rch/Karmanti-Armour/blob/main/SECURITY.md
+    about: Leaked keys, vulnerability reports and anything sensitive — do not open a public issue.
+  - name: Commercial licence / evaluation
+    url: https://github.com/xd4rch
+    about: Sales, evaluation builds and licensing questions.

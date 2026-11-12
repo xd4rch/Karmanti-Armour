@@ -1,0 +1,10 @@
+# Text normalisation + binary classification (kept intentionally small)
+* text=auto eol=lf
+
+*.md   text eol=lf
+*.cpp  text eol=lf
+*.yml  text eol=lf
+*.gif  binary
+
+assets/*  linguist-documentation
+docs/*    linguist-documentation
