@@ -10,8 +10,7 @@ server, and without leaving the payload on disk.
 ![licence](https://img.shields.io/badge/licence-proprietary-red)
 ![docs](https://img.shields.io/badge/docs-4%20documents-2ea043)
 
-**[Download the evaluation build](https://github.com/xd4rch/Karmanti-Armour/releases/tag/eval-7.4.6.0)**  
-Windows x64 · 1.2 MB · 14 days · no licence key · unsigned · tamper-terminal
+**Evaluation builds are issued per machine.** Request one through the private security contact.
 
 > [!NOTE]
 > Karmanti is **not** a kernel driver, a hypervisor or a sandbox. It runs in user
@@ -121,14 +120,13 @@ Full instructions: [`examples/README.md`](examples/README.md).
 |---|---|---|
 | Documentation + source example | this repository (`main`) | current |
 | Evaluation build | [request one](#evaluation) | built for your machine, time-limited |
-| **Evaluation build (demo)** | [Download eval-7.4.6.0](https://github.com/xd4rch/Karmanti-Armour/releases/tag/eval-7.4.6.0) | unsigned, Windows x64, 14 days, tamper-terminal |
 | CI status | [Actions](https://github.com/xd4rch/Karmanti-Armour/actions) | a guard job rejects binaries, packages, licence material and broken links |
 
 > [!NOTE]
 > This repository intentionally contains **no executables**. Shipping binaries
 > through git history is what makes a repository unrecoverable after a leak, so
 > a CI job fails the build if `.exe`, `.dll`, `.krm`, `.lic` or archive files are
-> ever committed. Distributable builds belong in GitHub Releases.
+> ever committed. Distributable builds are provided out of band.
 
 ---
 
@@ -148,7 +146,7 @@ Full instructions: [`examples/README.md`](examples/README.md).
 ## Evaluation
 
 A ready-made evaluation build for the bundled demo payload is published in
-[Releases](https://github.com/xd4rch/Karmanti-Armour/releases). For **your own**
+The private security contact. For **your own**
 application, an evaluation build is generated per machine: a licence-free launcher
 that starts a trial on first launch.
 An **evaluation build** is a working launcher that:
@@ -300,7 +298,6 @@ anti-tamper on legitimate commercial software.
 | Link | What it is |
 |---|---|
 | <https://github.com/xd4rch/Karmanti-Armour> | canonical repository URL |
-| [Releases](https://github.com/xd4rch/Karmanti-Armour/releases) | evaluation builds (`eval-7.4.1.0` current, `eval-7.4.0.0` previous) |
 | [Docs](https://github.com/xd4rch/Karmanti-Armour/tree/main/docs) | architecture, ADS execution, anti-dump, verification |
 | [examples/](examples/) | the source example (`MIT`) and its build instructions |
 | [LICENSE](LICENSE) | documentation and brand terms; the example is MIT |
