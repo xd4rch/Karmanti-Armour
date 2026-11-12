@@ -1,0 +1,81 @@
+name: repository-guard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  no-forbidden-files:
+    name: Reject binaries and licence material
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fail if binaries, packages or licence files are tracked
+        shell: bash
+        run: |
+          set -euo pipefail
+          forbidden="$(git ls-files | grep -Ei '\.(exe|dll|sys|msi|zip|7z|krm|lic|pdb|lib|obj|res)$|(^|/)node_[^/]*\.dat$|(^|/)~krm_' || true)"
+          if [ -n "$forbidden" ]; then
+            echo "::error::This repository must not contain binaries, packages or licence material."
+            echo "$forbidden"
+            exit 1
+          fi
+          echo "No forbidden files tracked."
+
+      - name: Fail on credential and licence-key patterns
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # 1) real credential material: PEM blocks and provider tokens
+          #    (-e is required: the pattern itself starts with a dash)
+          creds="$(git grep -nE -e '-----BEGIN [A-Z ]*PRIVATE KEY-----|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{16}' -- . ':!.github/' || true)"
+          if [ -n "$creds" ]; then
+            echo "::error::Credential material detected. Remove it and rotate the credential."
+            echo "$creds"
+            exit 1
+          fi
+
+          # 2) a real 57-character licence key: 28 chars, '-', 28 chars.
+          #    A key mixes letters/digits with special characters; markdown rules
+          #    made of repeated dashes or equals signs must not match.
+          lic="$(git grep -hoE '[A-Za-z0-9*~^()_%$@!#&=.-]{57}' -- . ':!.github/' \
+                 | awk 'length($0)==57 \
+                        && substr($0,29,1)=="-" \
+                        && $0 ~ /[A-Za-z0-9]/ \
+                        && $0 ~ /[*~^()_%$@!#&=]/ {print; k=1} END{exit k?1:0}' || true)"
+          if [ -n "$lic" ]; then
+            echo "::error::A string that looks like a licence key was committed."
+            exit 1
+          fi
+
+          echo "No credential or licence-key patterns detected."
+
+  markdown:
+    name: Markdown sanity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for broken relative links in docs
+        shell: bash
+        run: |
+          set -euo pipefail
+          fail=0
+          while IFS= read -r file; do
+            dir="$(dirname "$file")"
+            while IFS= read -r link; do
+              target="${link%%#*}"
+              [ -z "$target" ] && continue
+              case "$target" in http*|mailto*|'') continue ;; esac
+              if [ ! -e "$dir/$target" ]; then
+                echo "::error file=$file::broken link -> $link"
+                fail=1
+              fi
+            done < <(grep -oE '\]\([^)]+\)' "$file" | sed -E 's/^\]\((.*)\)$/\1/')
+          done < <(git ls-files '*.md')
+          exit $fail

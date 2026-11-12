@@ -1,0 +1,57 @@
+# ---------------------------------------------------------------------------
+# Karmanti-Armour — repository hygiene
+#
+# This repository is documentation + a source example. It must NEVER contain
+# build artifacts, licence material or customer data.
+# ---------------------------------------------------------------------------
+
+# --- licence & packaging artifacts (never publish) -------------------------
+*.lic
+*.krm
+*.master.lic
+*.state
+*.jsonl
+node_*.dat
+~krm_*
+
+# --- compiled / portable binaries ------------------------------------------
+*.exe
+*.dll
+*.pdb
+*.lib
+*.obj
+*.o
+*.res
+*.ico
+*.zip
+*.7z
+*.msi
+*.nupkg
+
+# --- kept on purpose -------------------------------------------------------
+!assets/*.gif
+
+# --- internals & private notes ---------------------------------------------
+docs_private/
+Yedekler/
+*.local.md
+NOTLAR*.txt
+_ACIKLAMA.*
+
+# --- Python / tooling ------------------------------------------------------
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.idea/
+.vscode/
+*.swp
+
+# --- OS noise --------------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+desktop.ini

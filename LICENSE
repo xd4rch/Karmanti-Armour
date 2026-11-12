@@ -1,0 +1,39 @@
+# License
+
+Copyright (c) 2026 Ömer Taha Keçeci (@xd4rch) — Karmanti. All rights reserved.
+
+Author: Ömer Taha Keçeci (@xd4rch)  
+Repository: https://github.com/xd4rch/Karmanti-Armour
+
+## Documentation and brand assets
+
+The contents of this repository — `README.md`, the `docs/` directory and the
+`assets/` directory — are published for reference and evaluation purposes only.
+You may read, cite and link to them, and quote short excerpts with attribution.
+You may **not** redistribute them as your own work, use them to build a
+competing product, or remove the attribution.
+
+## Commercial product
+
+The Karmanti protector, its packaging format, its licence-issuing tooling and
+any binary produced by them are **proprietary and closed-source**. Nothing in
+this repository grants a licence to them. Generated launchers are licensed per
+product ID under a separate commercial agreement, and are bound to the hardware
+of the licensee.
+
+## Example source code
+
+`examples/telemetry_demo.cpp` and `examples/README.md` are released under the
+**MIT License** so that anyone can build, run and adapt the example. The MIT
+terms apply only to those two files — see `examples/LICENSE`.
+
+## Trademarks
+
+"Karmanti" and "Karmanti-Armour" are the product names of the copyright holder.
+Do not use them in a way that suggests endorsement of a derivative work.
+
+## No warranty
+
+The material in this repository is provided "as is", without warranty of any
+kind, express or implied, including but not limited to the warranties of
+merchantability, fitness for a particular purpose and non-infringement.
